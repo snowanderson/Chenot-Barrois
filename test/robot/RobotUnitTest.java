@@ -1,3 +1,5 @@
+package robot;
+
 import java.util.ArrayList;
 
 import static robot.Direction.*;
