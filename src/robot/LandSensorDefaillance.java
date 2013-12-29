@@ -1,4 +1,7 @@
 package robot;
 
-public class LandSensorDefaillance extends Exception {
+public class LandSensorDefaillance extends Exception
+{
+
+
 }
