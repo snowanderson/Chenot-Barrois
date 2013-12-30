@@ -17,6 +17,8 @@ import robot.UnlandedRobotException;
 public class RobotUnitTest
 {
     Robot robot;
+    LandSensor ls;
+    Random rand;
 
 //    @Before
 //    public void init(){
@@ -40,8 +42,9 @@ public class RobotUnitTest
     {
         robot = new Robot(0.0,new Battery());
         robot.land(new Coordinates(0, 0), new LandSensor(new Random()));
-        Assert.assertTrue(robot.getDirection() == NORTH);
+        Assert.assertTrue(robot.getDirection()==NORTH);
     }
+
 
     @Test
     public void testMoveForward() throws Exception {
@@ -53,7 +56,7 @@ public class RobotUnitTest
     }
 
     @Test
-    public void testMoveBackward() throws LandSensorDefaillance, UnlandedRobotException, InsufficientChargeException, InaccessibleCoordinate {
+    public void testmoveBackward() throws LandSensorDefaillance, UnlandedRobotException, InsufficientChargeException, InaccessibleCoordinate {
         robot = new Robot(0.0,new Battery());
         robot.land(new Coordinates(0,0),new LandSensor(new Random()));
         robot.moveBackward();
@@ -62,6 +65,45 @@ public class RobotUnitTest
 
     }
 
+    @Test
+    public void testTurnLeft() throws Exception {
+        robot = new Robot(0.0,new Battery());
+        robot.land(new Coordinates(0,0),new LandSensor(new Random()));
+        Assert.assertEquals(Direction.NORTH,robot.getDirection());
+        robot.turnLeft();
+        Assert.assertEquals(Direction.WEST,robot.getDirection());
+        robot.turnLeft();
+        Assert.assertEquals(Direction.SOUTH,robot.getDirection());
+        robot.turnLeft();
+        Assert.assertEquals(Direction.EAST,robot.getDirection());
+        robot.turnLeft();
+        Assert.assertEquals(Direction.NORTH,robot.getDirection());
+    }
+
+    @Test
+    public void testTurnRight() throws Exception {
+        robot = new Robot(0.0,new Battery());
+        robot.land(new Coordinates(0,0),new LandSensor(new Random()));
+        Assert.assertEquals(Direction.NORTH, robot.getDirection());
+        robot.turnRight();
+        Assert.assertEquals(Direction.EAST, robot.getDirection());
+        robot.turnRight();
+        Assert.assertEquals(Direction.SOUTH, robot.getDirection());
+        robot.turnRight();
+        Assert.assertEquals(Direction.WEST, robot.getDirection());
+        robot.turnRight();
+        Assert.assertEquals(Direction.NORTH,robot.getDirection());
+    }
+
+    @Test
+    public void testComputedTo() throws Exception {
+        robot = new Robot(0.0,new Battery());
+        robot.land(new Coordinates(0,0),new LandSensor(new Random()));
+        robot.computeRoadTo(new Coordinates(2,2));
+        robot.letsGo();
+        Assert.assertEquals(2,robot.getXposition());
+        Assert.assertEquals(2,robot.getYposition());
+    }
 
 }
 
