@@ -94,9 +94,16 @@ public class RobotUnitTest
         robot.turnRight();
         Assert.assertEquals(Direction.NORTH,robot.getDirection());
     }
-    
 
-
+    @Test
+    public void testComputedTo() throws Exception {
+        robot = new Robot(0.0,new Battery());
+        robot.land(new Coordinates(0,0),new LandSensor(new Random()));
+        robot.computeRoadTo(new Coordinates(2,2));
+        robot.letsGo();
+        Assert.assertEquals(2,robot.getXposition());
+        Assert.assertEquals(2,robot.getYposition());
+    }
 
 }
 
