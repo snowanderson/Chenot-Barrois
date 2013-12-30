@@ -17,8 +17,6 @@ import robot.UnlandedRobotException;
 public class RobotUnitTest
 {
     Robot robot;
-    LandSensor ls;
-    Random rand;
 
 //    @Before
 //    public void init(){
@@ -42,9 +40,8 @@ public class RobotUnitTest
     {
         robot = new Robot(0.0,new Battery());
         robot.land(new Coordinates(0, 0), new LandSensor(new Random()));
-        Assert.assertTrue(robot.getDirection()==NORTH);
+        Assert.assertTrue(robot.getDirection() == NORTH);
     }
-
 
     @Test
     public void testMoveForward() throws Exception {
@@ -55,4 +52,16 @@ public class RobotUnitTest
         Assert.assertEquals(1,robot.getYposition());
     }
 
+    @Test
+    public void testmoveBackward() throws LandSensorDefaillance, UnlandedRobotException, InsufficientChargeException, InaccessibleCoordinate {
+        robot = new Robot(0.0,new Battery());
+        robot.land(new Coordinates(0,0),new LandSensor(new Random()));
+        robot.moveBackward();
+        Assert.assertEquals(0,robot.getXposition());
+        Assert.assertEquals(-1,robot.getYposition());
+
+    }
+
+
 }
+
