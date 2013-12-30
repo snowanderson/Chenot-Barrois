@@ -15,12 +15,6 @@ public class MapToolsUnitTest
         Assert.assertEquals(0, posfinale.getX());
         Assert.assertEquals(1, posfinale.getY());
     }
-    @Test
-    public void testCounterclockwise1()
-    {
-        Direction direction = Direction.NORTH;
-        Assert.assertEquals(Direction.WEST, MapTools.counterclockwise(direction));
-    }
 
     @Test
     public void testNextForwardPositionSouth() {
@@ -29,12 +23,6 @@ public class MapToolsUnitTest
         Assert.assertEquals(0, posfinale.getX());
         Assert.assertEquals(-1, posfinale.getY());
     }
-    @Test
-    public void testCounterclockwise2()
-    {
-        Direction direction = Direction.WEST;
-        Assert.assertEquals(Direction.SOUTH, MapTools.counterclockwise(direction));
-    }
 
     @Test
     public void testNextForwardPositionEast() {
@@ -42,13 +30,6 @@ public class MapToolsUnitTest
         Coordinates posfinale = MapTools.nextForwardPosition(posinitiale,Direction.EAST);
         Assert.assertEquals(1, posfinale.getX());
         Assert.assertEquals(0, posfinale.getY());
-    }
-    
-    @Test
-    public void testCounterclockwise3()
-    {
-        Direction direction = Direction.SOUTH;
-        Assert.assertEquals(Direction.EAST, MapTools.counterclockwise(direction));
     }
 
     @Test
@@ -76,6 +57,14 @@ public class MapToolsUnitTest
     }
 
     @Test
+    public void testNextBackwardPositionEast() {
+        Coordinates posinitiale = new Coordinates(0, 0);
+        Coordinates posfinale = MapTools.nextBackwardPosition(posinitiale, Direction.EAST);
+        Assert.assertEquals(-1, posfinale.getX());
+        Assert.assertEquals(0, posfinale.getY());
+    }
+
+    @Test
     public void testNextBackwardPositionWest() {
         Coordinates posinitiale = new Coordinates(0, 0);
         Coordinates posfinale = MapTools.nextBackwardPosition(posinitiale, Direction.WEST);
@@ -84,12 +73,27 @@ public class MapToolsUnitTest
     }
 
     @Test
-    public void testNextBackwardPositionEast() {
-        Coordinates posinitiale = new Coordinates(0, 0);
-        Coordinates posfinale = MapTools.nextBackwardPosition(posinitiale, Direction.EAST);
-        Assert.assertEquals(-1, posfinale.getX());
-        Assert.assertEquals(0, posfinale.getY());
+    public void testCounterclockwise1()
+    {
+        Direction direction = Direction.NORTH;
+        Assert.assertEquals(Direction.WEST, MapTools.counterclockwise(direction));
     }
+
+
+    @Test
+    public void testCounterclockwise2()
+    {
+        Direction direction = Direction.WEST;
+        Assert.assertEquals(Direction.SOUTH, MapTools.counterclockwise(direction));
+    }
+
+    @Test
+    public void testCounterclockwise3()
+    {
+        Direction direction = Direction.SOUTH;
+        Assert.assertEquals(Direction.EAST, MapTools.counterclockwise(direction));
+    }
+
     @Test
     public void testCounterclockwise4()
     {
