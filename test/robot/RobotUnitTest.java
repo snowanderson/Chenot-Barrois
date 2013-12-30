@@ -42,7 +42,7 @@ public class RobotUnitTest
     {
         robot = new Robot(0.0,new Battery());
         robot.land(new Coordinates(0, 0), new LandSensor(new Random()));
-        Assert.assertTrue(robot.getDirection() == NORTH);
+        Assert.assertTrue(robot.getDirection()==NORTH);
     }
 
 
@@ -96,24 +96,13 @@ public class RobotUnitTest
     }
 
     @Test
-    public void testComputedTo() throws UnlandedRobotException, InsufficientChargeException, LandSensorDefaillance, UndefinedRoadbookException, InaccessibleCoordinate {
+    public void testComputedTo() throws Exception
+    {
         robot = new Robot(0.0,new Battery());
         robot.land(new Coordinates(0,0),new LandSensor(new Random()));
-        robot.computeRoadTo(new Coordinates(2,2));
-        try {
-            robot.letsGo();
-        } catch (UnlandedRobotException e) {
-            e.printStackTrace();
-        } catch (UndefinedRoadbookException e) {
-            e.printStackTrace();
-        } catch (InsufficientChargeException e) {
-            e.printStackTrace();
-        } catch (LandSensorDefaillance landSensorDefaillance) {
-            landSensorDefaillance.printStackTrace();
-        } catch (InaccessibleCoordinate inaccessibleCoordinate) {
-            inaccessibleCoordinate.printStackTrace();
-        }
-        Assert.assertEquals(2,robot.getXposition());
+        robot.computeRoadTo(new Coordinates(0,2));
+        robot.letsGo();
+        Assert.assertEquals(0,robot.getXposition());
         Assert.assertEquals(2,robot.getYposition());
     }
 
