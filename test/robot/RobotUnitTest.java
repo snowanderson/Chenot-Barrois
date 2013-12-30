@@ -14,7 +14,8 @@ import static robot.Instruction.*;
 import static robot.RoadBookCalculator.calculateRoadBook;
 import robot.UnlandedRobotException;
 
-public class RobotUnitTest {
+public class RobotUnitTest
+{
     Robot robot;
     LandSensor ls;
     Random rand;
@@ -36,4 +37,11 @@ public class RobotUnitTest {
 
     }
 
+    @Test
+    public void testgetDirection() throws UnlandedRobotException
+    {
+        robot = new Robot(0.0,new Battery());
+        robot.land(new Coordinates(0, 0), new LandSensor(new Random()));
+        Assert.assertTrue(robot.getDirection()==NORTH);
+    }
 }
