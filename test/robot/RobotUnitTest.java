@@ -15,7 +15,6 @@ import static robot.RoadBookCalculator.calculateRoadBook;
 import robot.UnlandedRobotException;
 
 public class RobotUnitTest {
-    private UnlandedRobotException obj;
     Robot robot;
     LandSensor ls;
     Random rand;
@@ -38,6 +37,15 @@ public class RobotUnitTest {
     public void testgetYposition() throws UnlandedRobotException {
         robot = new Robot(0.0,new Battery());
         robot.getYposition();
+    }
+
+    @Test
+    public void testgetPosition() throws UnlandedRobotException {
+        robot = new Robot(0.0,new Battery());
+        robot.land(new Coordinates(0, 0), new LandSensor(new Random()));
+        Assert.assertEquals(0, robot.getXposition());
+        Assert.assertEquals(0, robot.getYposition());
+
     }
 
 }
