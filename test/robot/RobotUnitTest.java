@@ -22,7 +22,7 @@ public class RobotUnitTest {
 
 //    @Before
 //    public void init(){
-//        robot = new Robot(0.0,new Battery());
+//
 //        rand = Mockito.mock(Random.class);
 //        Mockito.when(rand.nextInt(Land.CountLand())).thenReturn(0);
 //        ls = new LandSensor(rand);
@@ -30,11 +30,13 @@ public class RobotUnitTest {
 
     @Test (expected = UnlandedRobotException.class)
     public void testgetXposition() throws UnlandedRobotException {
+        robot = new Robot(0.0,new Battery());
         robot.getXposition();
     }
 
     @Test (expected = UnlandedRobotException.class)
     public void testgetYposition() throws UnlandedRobotException {
+        robot = new Robot(0.0,new Battery());
         robot.getYposition();
     }
 
