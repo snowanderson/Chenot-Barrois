@@ -42,6 +42,8 @@ public class MapToolsUnitTest
         Coordinates posfinale = MapTools.nextForwardPosition(posinitiale,Direction.EAST);
         Assert.assertEquals(1, posfinale.getX());
         Assert.assertEquals(0, posfinale.getY());
+    }
+    
     @Test
     public void testCounterclockwise3()
     {
