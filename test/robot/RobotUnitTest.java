@@ -29,7 +29,7 @@ public class RobotUnitTest
 //    }
 
     @Test
-    public void testgetPosition() throws UnlandedRobotException {
+    public void testGetPosition() throws UnlandedRobotException {
         robot = new Robot(0.0,new Battery());
         robot.land(new Coordinates(0, 0), new LandSensor(new Random()));
         Assert.assertEquals(0, robot.getXposition());
@@ -38,10 +38,21 @@ public class RobotUnitTest
     }
 
     @Test
-    public void testgetDirection() throws UnlandedRobotException
+    public void testGetDirection() throws UnlandedRobotException
     {
         robot = new Robot(0.0,new Battery());
         robot.land(new Coordinates(0, 0), new LandSensor(new Random()));
         Assert.assertTrue(robot.getDirection()==NORTH);
     }
+
+
+    @Test
+    public void testMoveForward() throws Exception {
+        robot = new Robot(0.0,new Battery());
+        robot.land(new Coordinates(0,0),new LandSensor(new Random()));
+        robot.moveForward();
+        Assert.assertEquals(0,robot.getXposition());
+        Assert.assertEquals(1,robot.getYposition());
+    }
+
 }
