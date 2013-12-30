@@ -27,18 +27,6 @@ public class RobotUnitTest {
 //        ls = new LandSensor(rand);
 //    }
 
-    @Test (expected = UnlandedRobotException.class)
-    public void testgetXposition() throws UnlandedRobotException {
-        robot = new Robot(0.0,new Battery());
-        robot.getXposition();
-    }
-
-    @Test (expected = UnlandedRobotException.class)
-    public void testgetYposition() throws UnlandedRobotException {
-        robot = new Robot(0.0,new Battery());
-        robot.getYposition();
-    }
-
     @Test
     public void testgetPosition() throws UnlandedRobotException {
         robot = new Robot(0.0,new Battery());
