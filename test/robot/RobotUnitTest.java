@@ -2,6 +2,9 @@ package robot;
 
 import junit.framework.Assert;
 import org.junit.Test;
+import org.junit.Before;
+import org.mockito.Mockito;
+import java.util.Random;
 
 import java.util.ArrayList;
 
@@ -13,21 +16,26 @@ import robot.UnlandedRobotException;
 
 public class RobotUnitTest {
     private UnlandedRobotException obj;
-    //Robot r;
+    Robot robot;
+    LandSensor ls;
+    Random rand;
 
-    @Test//(expected = UnlandedRobotException.class)
-    public void testgetXposition()
-    {
-        boolean isLanded = false;
-        Assert.assertFalse(isLanded);
+//    @Before
+//    public void init(){
+//        robot = new Robot(0.0,new Battery());
+//        rand = Mockito.mock(Random.class);
+//        Mockito.when(rand.nextInt(Land.CountLand())).thenReturn(0);
+//        ls = new LandSensor(rand);
+//    }
 
+    @Test (expected = UnlandedRobotException.class)
+    public void testgetXposition() throws UnlandedRobotException {
+        robot.getXposition();
     }
 
-    @Test ()
-    public void testgetYposition()
-    {
-        boolean isLanded = false;
-        assertTrue("" + obj, isLanded);
+    @Test (expected = UnlandedRobotException.class)
+    public void testgetYposition() throws UnlandedRobotException {
+        robot.getYposition();
     }
 
 }
