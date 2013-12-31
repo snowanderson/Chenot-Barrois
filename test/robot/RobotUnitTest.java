@@ -96,5 +96,7 @@ public class RobotUnitTest
         Assert.assertEquals(2,robot.getYposition());
     }
 
+//    testletsgo;
+//    testmoveto;
 }
 

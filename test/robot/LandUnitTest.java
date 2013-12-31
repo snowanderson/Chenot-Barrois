@@ -36,8 +36,11 @@ public class LandUnitTest {
         Assert.assertEquals(Land.Sable, Land.getLandByOrdinal(ordinal));
     }
 
-    @Test
-    public void
+    @Test(expected = TerrainNonRepertorieException.class)
+    public void testGetLandByOrdinal6() throws TerrainNonRepertorieException {
+        int ordinal = 6;
+        Land.getLandByOrdinal(ordinal);
+    }
 
     @Test
     public void testCountLand()
