@@ -4,6 +4,8 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.junit.Before;
 import org.mockito.Mockito;
+
+import java.util.List;
 import java.util.Random;
 
 import java.util.ArrayList;
@@ -90,12 +92,87 @@ public class RobotUnitTest
     {
         robot = new Robot(0.0,new Battery());
         robot.land(new Coordinates(0,0),new LandSensor(new Random()));
-        robot.computeRoadTo(new Coordinates(0,2));
+        robot.computeRoadTo(new Coordinates(0, 2));
         robot.letsGo();
-        Assert.assertEquals(0,robot.getXposition());
+        Assert.assertEquals(0, robot.getXposition());
         Assert.assertEquals(2,robot.getYposition());
     }
 
+    @Test(expected = UndefinedRoadbookException.class)
+    public void testLetsGo1() throws InsufficientChargeException, LandSensorDefaillance, UnlandedRobotException, UndefinedRoadbookException, InaccessibleCoordinate {
+        Robot robot = new Robot();
+        robot.letsGo();
+    }
+
+    @Test
+    public void testLetsGo2() throws InsufficientChargeException, LandSensorDefaillance, UnlandedRobotException, UndefinedRoadbookException, InaccessibleCoordinate {
+        Random random = new Random();
+        Robot robot = new Robot();
+        Coordinates coordinates = new Coordinates(0,0);
+        LandSensor sensor = new LandSensor(random);
+        List<Instruction> liste = new ArrayList<Instruction>();
+        liste.add(Instruction.FORWARD);
+        RoadBook book = new RoadBook(liste);
+        robot.land(coordinates,sensor);
+        robot.setRoadBook(book);
+        robot.letsGo();
+        Assert.assertEquals(0,robot.getXposition());
+        Assert.assertEquals(1,robot.getYposition());
+
+    }
+
+    @Test
+    public void testLetsGo3() throws InsufficientChargeException, LandSensorDefaillance, UnlandedRobotException, UndefinedRoadbookException, InaccessibleCoordinate {
+        Random random = new Random();
+        Robot robot = new Robot();
+        Coordinates coordinates = new Coordinates(0,0);
+        LandSensor sensor = new LandSensor(random);
+        List<Instruction> liste = new ArrayList<Instruction>();
+        liste.add(Instruction.TURNLEFT);
+        liste.add(Instruction.FORWARD);
+        RoadBook book = new RoadBook(liste);
+        robot.land(coordinates,sensor);
+        robot.setRoadBook(book);
+        robot.letsGo();
+        Assert.assertEquals(-1,robot.getXposition());
+        Assert.assertEquals(0,robot.getYposition());
+
+    }
+
+    @Test
+    public void testLetsGo4() throws InsufficientChargeException, LandSensorDefaillance, UnlandedRobotException, UndefinedRoadbookException, InaccessibleCoordinate {
+        Random random = new Random();
+        Robot robot = new Robot();
+        Coordinates coordinates = new Coordinates(0,0);
+        LandSensor sensor = new LandSensor(random);
+        List<Instruction> liste = new ArrayList<Instruction>();
+        liste.add(Instruction.TURNRIGHT);
+        liste.add(Instruction.FORWARD);
+        RoadBook book = new RoadBook(liste);
+        robot.land(coordinates,sensor);
+        robot.setRoadBook(book);
+        robot.letsGo();
+        Assert.assertEquals(1,robot.getXposition());
+        Assert.assertEquals(0,robot.getYposition());
+
+    }
+
+    @Test
+    public void testLetsGo5() throws InsufficientChargeException, LandSensorDefaillance, UnlandedRobotException, UndefinedRoadbookException, InaccessibleCoordinate {
+        Random random = new Random();
+        Robot robot = new Robot();
+        Coordinates coordinates = new Coordinates(0,0);
+        LandSensor sensor = new LandSensor(random);
+        List<Instruction> liste = new ArrayList<Instruction>();
+        liste.add(Instruction.BACKWARD);
+        RoadBook book = new RoadBook(liste);
+        robot.land(coordinates,sensor);
+        robot.setRoadBook(book);
+        robot.letsGo();
+        Assert.assertEquals(0,robot.getXposition());
+        Assert.assertEquals(-1,robot.getYposition());
+
+    }
 //    testletsgo;
 //    testmoveto;
 }
