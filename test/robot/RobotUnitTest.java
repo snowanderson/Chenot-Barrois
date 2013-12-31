@@ -2,19 +2,13 @@ package robot;
 
 import junit.framework.Assert;
 import org.junit.Test;
-import org.junit.Before;
-import org.mockito.Mockito;
 
 import java.util.List;
 import java.util.Random;
 
 import java.util.ArrayList;
 
-import static junit.framework.Assert.*;
 import static robot.Direction.*;
-import static robot.Instruction.*;
-import static robot.RoadBookCalculator.calculateRoadBook;
-import robot.UnlandedRobotException;
 
 public class RobotUnitTest
 {
@@ -39,7 +33,7 @@ public class RobotUnitTest
 
 
     @Test
-    public void testMoveForward() throws Exception {
+    public void testMoveForward() throws LandSensorDefaillance, UnlandedRobotException, InsufficientChargeException, InaccessibleCoordinate {
         robot = new Robot(0.0,new Battery());
         robot.land(new Coordinates(0,0),new LandSensor(new Random()));
         robot.moveForward();
@@ -173,7 +167,5 @@ public class RobotUnitTest
         Assert.assertEquals(-1,robot.getYposition());
 
     }
-//    testletsgo;
-//    testmoveto;
 }
 
