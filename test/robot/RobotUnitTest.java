@@ -17,16 +17,6 @@ import robot.UnlandedRobotException;
 public class RobotUnitTest
 {
     Robot robot;
-    LandSensor ls;
-    Random rand;
-
-//    @Before
-//    public void init(){
-//
-//        rand = Mockito.mock(Random.class);
-//        Mockito.when(rand.nextInt(Land.CountLand())).thenReturn(0);
-//        ls = new LandSensor(rand);
-//    }
 
     @Test
     public void testGetPosition() throws UnlandedRobotException {

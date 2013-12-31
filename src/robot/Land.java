@@ -3,11 +3,13 @@ package robot;
 
 public enum Land {
 
+    Infranchissable(0),
     Terre(1),
     Roche(2),
-    Sable(4),
     Boue(3),
-    Infranchissable(0);
+    Sable(4);
+
+
 
     public final int coefficient;
 
